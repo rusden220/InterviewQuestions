@@ -20,6 +20,7 @@ namespace InterviewQuestions
 			questions.Add(new DifferencesBetweenOverrideAndNew());
 			questions.Add(new CheckInterfaceCasting());
 			questions.Add(new CtorRush());
+			questions.Add(new MemoryLeakInEventContract());
 
 			for (int i = 0; i < questions.Count; i++)
 			{
