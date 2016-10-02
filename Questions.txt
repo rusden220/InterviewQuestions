@@ -75,6 +75,8 @@
 	* ключевое слово override нельзя использовать без virtual, override or abstract, new можно, так как оно позволяет скрывать реализацию двух методов с одинаковым  названием в классе родителе и потомке
 
 9.	Переопределение двух разных типов к одному интерфейсу и обратно
+	(CheckInterfaceCasting)
+
 		public interface IInterface { void ToDo(); }
 		public class C1: IInterface
 		{
@@ -94,7 +96,57 @@
 
 		* ошибка во время выполнения, так как приветит тип с2 к с1 невозможно
 
-10. Как будет очищена память если не отписаться от события
+10.	При наследовании и определённых конструкторов в каждом из классов, чей конструкторо выполнится первым
+	(CtorRush)
+
+	* Конструктор родитель, замет наследник
+	* Со статик полями всё наоборот, от потомка к родителю, если в потомке используется статик переменная то при первом обращении к ней вызывается статик конструктор родителя, в котором она реализованна
+
+		private class Parent
+		{
+			protected static string _staticString = nameof(_staticString); //7
+			private string _simpleText = nameof(_simpleText); // 9
+			static Parent()
+			{
+				Console.WriteLine($"static {nameof(Parent)}"); // 8
+			}
+			public Parent() //10
+			{
+				Console.WriteLine(nameof(Parent)); //11
+			}
+		}
+		private class Child : Parent
+		{
+			private string _simpleTextChild = nameof(_simpleTextChild);  //5
+			static Child()
+			{
+				Console.WriteLine($"static {nameof(Child)}"); // 4
+			}
+			public Child() //6
+			{				
+				Console.WriteLine(nameof(Child)); //12
+			}
+		}
+		private class ChildNew : Child
+		{
+			private string _simpleTextChildNew = nameof(_simpleTextChildNew); //2
+			static ChildNew()
+			{
+				Console.WriteLine($"static {nameof(ChildNew)}"); //1
+				//Console.WriteLine(_staticString); //если используется статик переменная из класса родителя выше, то перед обращением к ней вызывается статик класса-родителя, в котором она реализованна
+			}
+			public ChildNew() // 3
+			{
+				Console.WriteLine(nameof(ChildNew)); // 13
+			}
+		}
+		Вызов ChildNew cw = new ChildNew();
+
+11.	Как будет очищена память если не отписаться от события
+	(MemoryLeakInEventContract)
+
+	* ? она не будет очищаться, не во всех случаях
+
 
 
 
@@ -184,3 +236,40 @@
 	* да, может существовать
 	* доступ будет по ключевому слову global::<className>
 	* у него нет namespace'a new ClassWithoutNamespace().GetType().Namespace вернёт null
+
+16.	Приметивные типы данных в C#
+	
+	* это типы данных которые имеют псевдоним (string, double) и тд
+
+17. Почему при переопределении одного из методов Equils() или GetHashCode() нужно переопределить и второй
+	
+	* потому что коллекции реализованные в C# требуют чтобы у одинаковых объектов были одинаковые хэши
+
+18. Модификаторы доступа C# 
+	
+	* private, protected, internal public
+	private - доступен тоько в классе
+	protected - доступен только в классе и в его наследниках
+	internal - только в определённой сборке
+	public - доступен всем
+
+19. Отличие get; private set; свойства от get; /*private set*/
+
+	* нет доступа даже через рефлексию 
+
+20. Оличие virtual от abstract
+	
+	* virtual требует тело метода, abstract не требует
+	* клсаа может быть только abstract, virtual - нет
+	* если класс не abstract, то и методы не могут быть abstract, а virtual - могут
+
+21. Можно ли писать case без break;
+	
+	*можно, только если в них ничего не выполняется
+		case 2:
+		case 4:
+		case 6:
+			wrtite("чётное"); break;//break обязательно
+		default:
+			break;
+

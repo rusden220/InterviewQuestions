@@ -19,6 +19,7 @@ namespace InterviewQuestions
 			questions.Add(new GetStringEmpty());
 			questions.Add(new DifferencesBetweenOverrideAndNew());
 			questions.Add(new CheckInterfaceCasting());
+			questions.Add(new CtorRush());
 
 			for (int i = 0; i < questions.Count; i++)
 			{
