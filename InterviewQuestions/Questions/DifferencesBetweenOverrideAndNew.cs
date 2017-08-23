@@ -34,7 +34,7 @@ using System;
 namespace InterviewQuestions.Questions
 {
 	public class DifferencesBetweenOverrideAndNew: QuestionBase
-	{
+	{		
 		private class Parent
 		{			
 			public virtual void ToDoVirtual()

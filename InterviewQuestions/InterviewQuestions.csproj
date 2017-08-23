@@ -32,6 +32,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -44,19 +45,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Questions\AnonymousTypeCasting.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Questions\AccessToPrivateFieldInDescendantClass.cs" />
     <Compile Include="Questions\CheckInterfaceCasting.cs" />
     <Compile Include="Questions\CompareStringsByValueAndReferenc.cs" />
     <Compile Include="Questions\CtorRush.cs" />
+    <Compile Include="Questions\DifferencesBetweenDictionaryAndHashSet.cs" />
     <Compile Include="Questions\DifferencesBetweenDisposeAndFinalize.cs" />
+    <Compile Include="Questions\DifferencesBetweenExplicitAndImplicitInterfaceRealization.cs" />
     <Compile Include="Questions\DifferencesBetweenOverrideAndNew.cs" />
     <Compile Include="Questions\DirectionOfStringParsing.cs" />
     <Compile Include="Questions\GetStringEmpty.cs" />
     <Compile Include="Questions\MemoryLeakInEventContract.cs" />
+    <Compile Include="Questions\NegativeNumbersInRam.cs" />
     <Compile Include="Questions\QuestionBase.cs" />
     <Compile Include="Questions\QuestionNumberSetter.cs" />
+    <Compile Include="Questions\StringChanging.cs" />
     <Compile Include="Questions\StringComparisonWithPoolIntern.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -64,9 +70,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Patterns\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Questions.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

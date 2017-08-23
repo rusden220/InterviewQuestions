@@ -37,6 +37,7 @@ namespace InterviewQuestions.Questions
 		private class ChildNew : Child
 		{
 			private string _simpleTextChildNew = nameof(_simpleTextChildNew); //2
+
 			static ChildNew()
 			{
 				Console.WriteLine($"static {nameof(ChildNew)}"); //1
